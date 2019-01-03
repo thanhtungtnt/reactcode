@@ -1,2 +1,4 @@
 voting_app/node_modules/
 time_tracking_app/node_modules/
+time_tracking_app/package-lock.json
+voting_app/package-lock.json

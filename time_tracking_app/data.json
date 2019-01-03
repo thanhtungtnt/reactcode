@@ -1,1 +1,23 @@
-[]
+[
+    {
+        "title": "Timer",
+        "project": "Project",
+        "id": "5c0a105b-1aa2-4693-815e-7090c5b79dc7",
+        "elapsed": 1181,
+        "runningSince": null
+    },
+    {
+        "title": "Timer",
+        "project": "Project",
+        "id": "363a9be8-ce9c-4ff4-878d-42b4b0496d6d",
+        "elapsed": 1168,
+        "runningSince": null
+    },
+    {
+        "title": "Timer",
+        "project": "Project",
+        "id": "7128be9b-1132-4b36-84ed-3da7c710dc07",
+        "elapsed": 1423,
+        "runningSince": null
+    }
+]

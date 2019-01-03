@@ -12,16 +12,16 @@ class ProductList extends React.Component {
 
   //componentDidMount là một Hàm Lifecicle của React
   componentDidMount(){
-    //Set data cho products - nếu gọi thì sẽ là this.state.products
+    //Set data cho products - nếu gọi lên từ Child Component thì sẽ là this.state.products
     this.setState({products: Seed.products});
   }
   
-  //Hàm Vote - Cách viết Arrow Function [TenHam] = ([Variable(optional)]) => {}
+  //Hàm Vote - Cách viết Arrow Function: [TenHam] = ([Variable or empty]) => {}
   handleProductUpvote = (productID) => {
-    //Tạo const changedProducts map (duyệt) từng sản phẩm
+    //Tạo biến const changedProducts map (duyệt) từng sản phẩm
     const changedProducts = this.state.products.map( (product) => {
       //Nếu id của product trong data = productID thì tăng vote lên 1
-      //Ngược lại return về product bình thường
+      //Ngược lại return về product bình thường (tức là vote bình thường)
       if(product.id == productID){
         //Clone 1 Object product bằng hàm Object.assign()
         return Object.assign({}, product, {
