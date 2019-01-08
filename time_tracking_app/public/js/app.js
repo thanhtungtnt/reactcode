@@ -1,9 +1,11 @@
 // TimerDashboard
 class TimerDashboard extends React.Component {
+  //Khởi tạo constructor
   constructor(props) {
     super(props);
   }
 
+  //render EditableTimerList và ToogleTimerForm với tham số isOpen
   render() {
     return (
       <div className='ui three column centered grid'>
@@ -17,11 +19,17 @@ class TimerDashboard extends React.Component {
 } // End TimerDashboard
 
 // EditableTimerList
+// Định nghĩa EditableTimerList
 class EditableTimerList extends React.Component {
   constructor(props) {
     super(props);
   }
 
+  //Trong EditableTimerList ta render 2 EditableTimer với các tham số: 
+  // title
+  // project
+  // runningSince
+  // editFormOpen: true: form có thể edit; false: form không thể edit
   render() {
     return (
       <div id='timer'>
@@ -33,12 +41,15 @@ class EditableTimerList extends React.Component {
 } // End EditableTimerList
 
 // EditableTimer
+// Định nghĩa EditableTimer
 class EditableTimer extends React.Component {
   constructor(props) {
     super(props);
   }
 
+  //Ta render dựa vào giá trị của editFormOpen
   render() {
+    //Nếu editFormOpen = true thì ta render TimerForm với 2 tham số title và project
     if (this.props.editFormOpen == true) {
       return (
         <TimerForm
@@ -46,7 +57,9 @@ class EditableTimer extends React.Component {
           project={this.props.project}
         />
       )
-    } else {
+    } 
+    //Còn ngược lại, nếu editFormOpen = false ta render Timer với 4 tham số như bên dưới  
+    else {
       return (
         <Timer
           title={this.props.title}
@@ -61,12 +74,15 @@ class EditableTimer extends React.Component {
 } // End EditableTimer
 
 // TimerForm
+// Định nghĩa TimerForm
 class TimerForm extends React.Component {
   constructor(props) {
     super(props);
   }
 
+  //Ta render cấu trúc của TimerForm
   render() {
+    //Tạo biến submitText dựa vào props.title 
     const submitText = this.props.title ? 'Update' : 'Create';
     return (
       <div className='ui centered card'>
@@ -94,17 +110,22 @@ class TimerForm extends React.Component {
 }//End TimerForm
 
 // ToggleTimerForm
+// Định nghĩa ToggleTimerForm
 class ToggleTimerForm extends React.Component {
   constructor(props) {
     super(props);
   }
 
+  // Ta render dựa vào tham số isOpen
   render() {
+    //Nếu isOpen = true, thì render TimerForm
     if(this.props.isOpen){
       return(
         <TimerForm />
       );
-    } else{
+    } 
+    //Ngược lại, nếu isOpen = false, thì render dấu cộng
+    else{
       return (
         <div className='ui basic content center aligned segment'>
           <button className='ui basic button icon'><i className='plus icon' /></button>
@@ -116,12 +137,14 @@ class ToggleTimerForm extends React.Component {
 } // End ToggleTimerForm
 
 // Timer
+// Định nghĩa Timer
 class Timer extends React.Component{
   constructor(props){
     super(props);
   }
 
   render() {
+    // Tạo biến elapsedString lưu thời gian
     const elapsedString = helpers.renderElapsedString(this.props.elapsed);
     return (
       <div className='ui centered card'>
