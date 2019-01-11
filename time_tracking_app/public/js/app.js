@@ -129,10 +129,18 @@ class TimerForm extends React.Component {
     this.setState({project: e.target.value});
   };
 
-  //Ta render cấu trúc của TimerForm
+  handleSubmit = () => {
+    this.props.onFormSubmit({
+      id: this.props.id, 
+      title: this.state.title,
+      project: this.state.project
+    });
+  }
+
+  //Ta render cấu trúc của TimerForsm
   render() {
     //Tạo biến submitText dựa vào props.title 
-    const submitText = this.props.title ? 'Update' : 'Create';
+    const submitText = this.props.id ? 'Update' : 'Create';
     return (
       <div className='ui centered card'>
         <div className='content'>
@@ -146,10 +154,10 @@ class TimerForm extends React.Component {
               <input type='text' value={this.state.project} onChange={this.handleProjectChange} />
             </div>
             <div className='ui two bottom attached buttons'>
-              <button className='ui basic blue button'>
+              <button className='ui basic blue button' onClick='handleSubmit'>
                 {submitText}
               </button>
-              <button className='ui basic red button'>Cancel</button>
+              <button className='ui basic red button' onClick='this.props.onFormClose'>Cancel</button>
             </div>
           </div>
         </div>
@@ -173,6 +181,15 @@ class ToggleTimerForm extends React.Component {
     this.setState({
       isOpen: true
     });
+  }
+
+  handleFormClose = () => {
+    this.setState({isOpen: false});
+  }
+
+  handleFormSubmit = (timer) =>{
+    this.props.onFormSubmit(timer)
+    this.setState({isOpen: false})
   }
 
   // Ta render dựa vào tham số isOpen
