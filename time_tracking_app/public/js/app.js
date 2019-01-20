@@ -25,13 +25,24 @@ class TimerDashboard extends React.Component {
     ],
   };
 
+  handleCreateFormSubmit = (timer) => {
+    this.createTimer(timer);
+  }
+
+  createTimer = (timer) => {
+    const t = helpers.newTimer(timer);
+    this.setState({
+      timers = this.state.timer.concat(t)
+    });
+  }
+
   //render EditableTimerList và ToogleTimerForm với tham số isOpen
   render() {
     return (
       <div className='ui three column centered grid'>
         <div className='column'>
           <EditableTimerList timers={this.state.timers} />
-          <ToggleTimerForm />
+          <ToggleTimerForm onFormSubmit={this.handleCreateFormSubmit} />
         </div>
       </div>
     )
@@ -178,9 +189,7 @@ class ToggleTimerForm extends React.Component {
   };
 
   handleFormOpen = () => {
-    this.setState({
-      isOpen: true
-    });
+    this.setState({isOpen: true});
   }
 
   handleFormClose = () => {
@@ -197,7 +206,10 @@ class ToggleTimerForm extends React.Component {
     //Nếu isOpen = true, thì render TimerForm
     if(this.state.isOpen){
       return(
-        <TimerForm />
+        <TimerForm 
+          onFormSubmit={this.handleFormSubmit}
+          onFormClose={this.handleFormClose}
+        />
       );
     } 
     //Ngược lại, nếu isOpen = false, thì render dấu cộng
