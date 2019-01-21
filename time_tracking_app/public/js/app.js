@@ -27,14 +27,14 @@ class TimerDashboard extends React.Component {
 
   handleCreateFormSubmit = (timer) => {
     this.createTimer(timer);
-  }
+  };
 
   createTimer = (timer) => {
     const t = helpers.newTimer(timer);
     this.setState({
-      timers = this.state.timer.concat(t)
+      timers: this.state.timers.concat(t),
     });
-  }
+  };
 
   //render EditableTimerList và ToogleTimerForm với tham số isOpen
   render() {
@@ -165,10 +165,10 @@ class TimerForm extends React.Component {
               <input type='text' value={this.state.project} onChange={this.handleProjectChange} />
             </div>
             <div className='ui two bottom attached buttons'>
-              <button className='ui basic blue button' onClick='handleSubmit'>
+              <button className='ui basic blue button' onClick={this.handleSubmit}>
                 {submitText}
               </button>
-              <button className='ui basic red button' onClick='this.props.onFormClose'>Cancel</button>
+              <button className='ui basic red button' onClick={this.props.onFormClose}>Cancel</button>
             </div>
           </div>
         </div>
@@ -197,8 +197,8 @@ class ToggleTimerForm extends React.Component {
   }
 
   handleFormSubmit = (timer) =>{
-    this.props.onFormSubmit(timer)
-    this.setState({isOpen: false})
+    this.props.onFormSubmit(timer);
+    this.setState({isOpen: false});
   }
 
   // Ta render dựa vào tham số isOpen
