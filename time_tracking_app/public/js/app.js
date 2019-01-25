@@ -92,6 +92,26 @@ class EditableTimer extends React.Component {
     editFormOpen: false
   };
 
+  handleEditClick = () => {
+    this.openForm();
+  }
+
+  handleFormClose = () => {
+    this.closeForm();
+  }
+
+  handleSubmit = () => {
+    this.props.onFormSubmit(timer);
+    this.closeForm();
+  }
+
+  closeForm = () => {
+    this.setState({editFormOpen: false})
+  }
+  openForm = () => {
+    this.setState({editFormOpen: true})
+  }
+
   //Ta render dựa vào giá trị của editFormOpen
   render() {
     //Nếu editFormOpen = true thì ta render TimerForm với 2 tham số title và project
@@ -101,6 +121,8 @@ class EditableTimer extends React.Component {
           id={this.props.id}
           title={this.props.title}
           project={this.props.project}
+          onFormSubmit={this.handleSubmit}
+          onFormClose={this.handleFormClose}
         />
       )
     } 
@@ -113,6 +135,7 @@ class EditableTimer extends React.Component {
           project={this.props.project}
           elapsed={this.props.elapsed}
           runningSince={this.props.runningSince}
+          onEditClick={this.handleEditClick}
         />
       )
     }
@@ -243,7 +266,7 @@ class Timer extends React.Component{
             <h2>{elapsedString}</h2>
           </div>
           <div className='extra content'>
-            <span className='right floated edit icon'><i className='edit icon' /></span>
+            <span className='right floated edit icon' onClick={this.props.onEditClick}><i className='edit icon' /></span>
             <span className='right floated trash icon'><i className='trash icon' /></span>
           </div>
         </div>
